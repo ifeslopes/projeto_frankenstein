@@ -9,7 +9,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/pessoas")
@@ -26,7 +25,7 @@ public class PessoaController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Pessoa> buscarPorId(@PathVariable UUID id) {
+    public ResponseEntity<Pessoa> buscarPorId(@PathVariable Integer id) {
         Pessoa obj = pessoaService.buscarPorId(id);
         return ResponseEntity.ok().body(obj);
     }
@@ -41,13 +40,13 @@ public class PessoaController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Pessoa> atualizar(@PathVariable UUID id, @RequestBody Pessoa pessoa) {
+    public ResponseEntity<Pessoa> atualizar(@PathVariable Integer id, @RequestBody Pessoa pessoa) {
         pessoa = pessoaService.atualizaPessoa(id, pessoa);
         return ResponseEntity.ok().body(pessoa);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         pessoaService.delete(id);
         return ResponseEntity.noContent().build();
     }

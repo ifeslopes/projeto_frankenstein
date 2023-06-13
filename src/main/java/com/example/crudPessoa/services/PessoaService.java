@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class PessoaService {
@@ -17,7 +16,7 @@ public class PessoaService {
     public List<Pessoa> listaTodos(){
         return  pessoaRepositorie.findAll();
     }
-    public Pessoa buscarPorId(UUID id){
+    public Pessoa buscarPorId(Integer id){
         Optional<Pessoa> obj =pessoaRepositorie.findById( id);
         return obj.get();
     }
@@ -25,11 +24,11 @@ public class PessoaService {
         return pessoaRepositorie.save(pessoa);
     }
 
-    public void delete(UUID id){
+    public void delete(Integer id){
         pessoaRepositorie.deleteById(id);
     }
 
-    public Pessoa atualizaPessoa(UUID id, Pessoa pessoa ){
+    public Pessoa atualizaPessoa(Integer id, Pessoa pessoa ){
         Pessoa pessoaBd = pessoaRepositorie.getReferenceById(id);
         atualizaDados(pessoaBd, pessoa);
         return  pessoaRepositorie.save(pessoaBd);

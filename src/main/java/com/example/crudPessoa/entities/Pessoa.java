@@ -2,16 +2,13 @@ package com.example.crudPessoa.entities;
 
 import com.example.crudPessoa.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Entity
@@ -19,8 +16,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class Pessoa implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String nome;
     private String email;
     @JsonIgnore
@@ -35,7 +32,7 @@ public class Pessoa implements Serializable {
         addPerfil(Perfil.COMU);
     }
 
-    public Pessoa(UUID id, String nome, String email, String telefone, int numeroDocumneto, String senha) {
+    public Pessoa(Integer id, String nome, String email, String telefone, int numeroDocumneto, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
