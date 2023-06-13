@@ -1,5 +1,7 @@
 package com.example.crudPessoa.config;
 
+import com.example.crudPessoa.security.JWTAuthenticationFilter;
+import com.example.crudPessoa.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,9 +25,13 @@ import java.util.Arrays;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    @Autowired
+    UserDetailsService userDetailsService;
 
     @Autowired
     private Environment env;
+    @Autowired
+    private JWTUtil jwtUtil;
 
 
     private static final String[] PUBLIC_MATCHERS = {
@@ -51,9 +57,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest().authenticated();
 
+        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+    }
 
 
     @Bean
