@@ -11,17 +11,17 @@ import java.util.Date;
 
 @Component
 public class JWTUtil {
-    @Value("${jwt.secret}")
-    private String expiration;
-
     @Value("${jwt.expiration}")
+    private int expiration;
+
+    @Value("${jwt.secret}")
     private String secret;
 
 
     public String genereteToken(String username) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
-        cal.add(Calendar.SECOND, 60);
+        cal.add(Calendar.SECOND, expiration);
         cal.getTime();
 
         return Jwts.builder()

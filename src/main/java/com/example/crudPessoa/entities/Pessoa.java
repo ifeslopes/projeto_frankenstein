@@ -3,6 +3,7 @@ package com.example.crudPessoa.entities;
 import com.example.crudPessoa.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 public class Pessoa implements Serializable {
     @Id
@@ -20,7 +22,6 @@ public class Pessoa implements Serializable {
     private Integer id;
     private String nome;
     private String email;
-    @JsonIgnore
     private String telefone;
     private int numeroDocumneto;
     private String senha;
@@ -49,5 +50,8 @@ public class Pessoa implements Serializable {
 
     public void addPerfil(Perfil perfil) {
         perfils.add(perfil.getCod());
+    }
+    public void removePerfil(Perfil perfil) {
+        perfils.remove(perfil.getCod());
     }
 }

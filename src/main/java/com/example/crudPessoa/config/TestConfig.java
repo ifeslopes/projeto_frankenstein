@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Configuration
-@Profile("test")
+@Profile("dev")
 @Service
 public class TestConfig implements CommandLineRunner {
     @Autowired
