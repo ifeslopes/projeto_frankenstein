@@ -1,5 +1,9 @@
 # Projeto Frankenstein
-![img.png](img.png)
+<div align="center">
+<p float="left">
+ <img src="https://github.com/ifeslopes/projeto_frankenstein/blob/main/img.png" width="400" />
+</p>
+ </div>
 
 O projeto Frankenstein é um crud simples, repositório destinado a fins didáticos, criado durante o meu estágio, onde busco aplicar o conhecimento adquirido ao longo desse período de aprendizado.
 
