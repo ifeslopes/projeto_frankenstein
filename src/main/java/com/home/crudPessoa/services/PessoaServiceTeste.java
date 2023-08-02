@@ -2,9 +2,9 @@ package com.home.crudPessoa.services;
 
 import com.home.crudPessoa.entities.Pessoa;
 import com.home.crudPessoa.entities.PessoaTeste;
-import com.home.crudPessoa.repositories.PessoaTesteRepository;
 import com.home.crudPessoa.enums.Perfil;
 import com.home.crudPessoa.repositories.PessoaRepositorie;
+import com.home.crudPessoa.repositories.PessoaTesteRepository;
 import com.home.crudPessoa.repositories.spec.PessoaSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,11 +27,11 @@ public class PessoaServiceTeste {
     private PessoaTesteRepository pessoaTesteRepository;
     @Autowired
     private BCryptPasswordEncoder pe;
-
-
+    @Autowired
+    PessoaSpec pessoaSpec;
 
     public PessoaServiceTeste(PessoaTesteRepository pessoaRepository) {
-    this.pessoaTesteRepository = pessoaRepository;
+        this.pessoaTesteRepository = pessoaRepository;
     }
 
 
@@ -46,14 +46,14 @@ public class PessoaServiceTeste {
     }
 
     public Page<Pessoa> buscarPorNome(String nome) {
-        Specification<Pessoa> spec = PessoaSpec.nomeEqual(nome);
+        Specification<Pessoa> spec = pessoaSpec.nomeEqual(nome);
         Pageable pageable = PageRequest.of(0, 10, Sort.by("nome"));
         Page<Pessoa> pessoa = pessoaRepositorie.findAll(spec, pageable);
         return pessoa;
     }
 
     public Page<Pessoa> buscarPorLentra(String nome) {
-        Specification<Pessoa> spec = PessoaSpec.nomeLinke(nome);
+        Specification<Pessoa> spec = pessoaSpec.nomeLinke(nome);
 
         Pageable pageable = PageRequest.of(0, 10, Sort.by("nome"));
 
@@ -63,7 +63,7 @@ public class PessoaServiceTeste {
     }
 
     public Page<Pessoa> buscarPorFiltro(Pessoa nome) {
-        Specification<Pessoa> spec = PessoaSpec.filtroDados(nome);
+        Specification<Pessoa> spec = pessoaSpec.filtroDados(nome);
         Pageable pageable = PageRequest.of(0, 10, Sort.by("nome"));
         Page<Pessoa> pessoa = pessoaRepositorie.findAll(spec, pageable);
         return pessoa;

@@ -1,7 +1,8 @@
-package com.home.crudPessoa.testeIntegridade;
+package com.home.crudPessoa;
 
 import com.home.crudPessoa.entities.Pessoa;
 import com.home.crudPessoa.entities.PessoaTeste;
+import com.home.crudPessoa.testeIntegridade.TestPessoaRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PessoaTestIntegriodade {
+public class PessoaTestIntegriodadeIT {
 
     @LocalServerPort
     private int port;

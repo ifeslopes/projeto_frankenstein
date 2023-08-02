@@ -25,7 +25,13 @@ public class PessoaService {
     @Autowired
     private PessoaTesteRepository pessoaTesteRepository;
     @Autowired
+    PessoaSpec pessoaSpec;
+
     private BCryptPasswordEncoder pe;
+
+    PessoaService() {
+        pe = new BCryptPasswordEncoder();
+    }
 
     public Page<Pessoa> listaTodos() {
         Pageable pageable = PageRequest.of(1, 1, Sort.by("nome"));
@@ -47,21 +53,20 @@ public class PessoaService {
     }
 
     public Page<Pessoa> buscarPorNome(String nome) {
-        Specification<Pessoa> spec = PessoaSpec.nomeEqual(nome);
+        Specification<Pessoa> spec = pessoaSpec.nomeEqual(nome);
         Pageable pageable = PageRequest.of(0, 10, Sort.by("nome"));
         return pessoaRepositorie.findAll(spec, pageable);
     }
 
     public Page<Pessoa> buscarPorLentra(String nome) {
-        Specification<Pessoa> spec = PessoaSpec.nomeLinke(nome);
-
+        Specification<Pessoa> spec = pessoaSpec.nomeLinke(nome);
         Pageable pageable = PageRequest.of(0, 10, Sort.by("nome"));
 
         return pessoaRepositorie.findAll(spec, pageable);
     }
 
     public Page<Pessoa> buscarPorFiltro(Pessoa nome) {
-        Specification<Pessoa> spec = PessoaSpec.filtroDados(nome);
+        Specification<Pessoa> spec = pessoaSpec.filtroDados(nome);
         Pageable pageable = PageRequest.of(0, 10, Sort.by("nome"));
         return pessoaRepositorie.findAll(spec, pageable);
     }
@@ -99,7 +104,7 @@ public class PessoaService {
     }
 
     public Pessoa codificarsenha(Pessoa pessoa){
-        pessoa.setSenha(pe.encode(pessoa.getSenha()));
+        pessoa.setSenha(this.pe.encode(pessoa.getSenha()));
         return pessoa;
 
     }

@@ -1,7 +1,8 @@
-package com.home.crudPessoa.testeIntegridade;
+package com.home.crudPessoa;
 
 import com.home.crudPessoa.entities.PessoaTeste;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.home.crudPessoa.testeIntegridade.TestPessoaRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest
 @ActiveProfiles("testInte")
 @AutoConfigureMockMvc(addFilters = false)
-public class PessoaTesteIntegridadeMockito {
+public class PessoaTesteIntegridadeMockitoIT {
     @Autowired
     MockMvc mockMvc;
 
