@@ -10,15 +10,16 @@ O projeto Frankenstein é um crud simples, repositório destinado a fins didáti
 ## Objetivo
 
 O objetivo principal deste projeto é proporcionar uma oportunidade de praticar e aplicar os conceitos e técnicas estudados durante o estágio. Aqui, é possível explorar diversas temáticas, incluindo os seguintes tópicos que já foram aprendidos:
-
-1. Utilização de DTO (Data Transfer Object) para melhorar a comunicação entre as camadas da aplicação.
-2. Uso do JPA (Java Persistence API) para facilitar o mapeamento objeto-relacional.
-3. Implementação de Specification para criar consultas avançadas e dinâmicas no banco de dados.
-4. Tratamento de exceções, garantindo uma resposta adequada e tratada para possíveis erros na aplicação.
-5. Utilização do banco de dados H2 para fins de desenvolvimento e testes.
-6. Implementação do Spring Security com JWT (JSON Web Tokens) para garantir a segurança da aplicação.
-7. Realização de testes integrados para verificar a interação correta entre os componentes da aplicação.
-8. Execução de testes unitários para assegurar o funcionamento correto de cada unidade de código.
+1. Utilização e configuração do application.properties.
+2. Utilização do Maven gerenciador de build e dependências. 
+3. Utilização de DTO (Data Transfer Object) para melhorar a comunicação entre as camadas da aplicação.
+4. Uso do JPA (Java Persistence API) para facilitar o mapeamento objeto-relacional.
+5. Implementação de Specification para criar consultas avançadas e dinâmicas no banco de dados.
+6. Tratamento de exceções, garantindo uma resposta adequada e tratada para possíveis erros na aplicação.
+7. Utilização do banco de dados H2 para fins de desenvolvimento e testes.
+8. Implementação do Spring Security com JWT (JSON Web Tokens) para garantir a segurança da aplicação.
+9. Realização de testes integrados para verificar a interação correta entre os componentes da aplicação.
+10. Execução de testes unitários para assegurar o funcionamento correto de cada unidade de código.
 
 ## Estado do projeto
 
