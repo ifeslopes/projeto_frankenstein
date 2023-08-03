@@ -44,7 +44,7 @@ public class StubPessoa {
                 .senha("123")
                 .email("email@gmail.com")
                 .id(1)
-                .perfils(Collections.singleton(Perfil.ADMIN.getCod()))
+                .perfils(Collections.singleton(Perfil.COMU.getCod()))
                 .build();
 
         return pessoa;

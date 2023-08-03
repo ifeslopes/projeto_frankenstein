@@ -2,23 +2,19 @@ package com.home.crudPessoa;
 
 import com.home.crudPessoa.entities.Pessoa;
 import com.home.crudPessoa.entities.PessoaTeste;
+import com.home.crudPessoa.enums.Perfil;
 import com.home.crudPessoa.repositories.PessoaRepositorie;
 import com.home.crudPessoa.repositories.PessoaTesteRepository;
 import com.home.crudPessoa.repositories.spec.PessoaSpec;
 import com.home.crudPessoa.services.PessoaService;
 import com.home.crudPessoa.testUnutario.StubPessoa;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -32,6 +28,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class PessoaTest {
     @InjectMocks
     private PessoaService pessoaService;
@@ -42,11 +39,14 @@ class PessoaTest {
     private PessoaTesteRepository pessoaTesteRepository;
     @Mock
     PessoaSpec pessoaSpec;
+    @Mock
+    Pessoa pessoamok;
 
     private Specification<Pessoa> pessoaSpecObj;
     private Page<Pessoa> pagePessoa;
 
     private PessoaTeste pessoa;
+
     private Pessoa pessoa1;
     private BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
 
@@ -125,14 +125,45 @@ class PessoaTest {
         assertNotNull(criarPessoa);
         Assertions.assertEquals("Nome Pessoa", criarPessoa.getNome());
     }
+
     @Test
-    void  deveDeletarPessoaPorId(){
+    void deveDeletarPessoaPorId() {
         doNothing().when(pessoaRepositorie).deleteById(1);
         pessoaService.delete(1);
         verify(pessoaRepositorie).deleteById(1);
         verify(pessoaRepositorie, times(1)).deleteById(1);
         verify(pessoaRepositorie, atLeastOnce()).deleteById(1);
+    }
 
+    @Test
+    void deveAtualizarPessoaPorId() {
+        when(pessoaRepositorie.getReferenceById(any())).thenReturn(pessoa1);
+        when(pessoaRepositorie.save(any())).thenReturn(pessoa1);
+        Pessoa response = pessoaService.atualizaPessoa(1, pessoa1);
+        assertNotNull(response);
+    }
+
+    @Test
+    @Disabled
+    void devePromoverPessoaPorId() {
+        when(pessoaRepositorie.getReferenceById(any())).thenReturn(pessoa1);
+        when(pessoaRepositorie.save(any())).thenReturn(pessoa1);
+        try (MockedStatic<Perfil> ldt = Mockito.mockStatic(Perfil.class)) {
+            ldt.when(() -> Perfil.ADMIN.getCod()).thenReturn(Perfil.ADMIN);
+            Pessoa response = pessoaService.promover(1);
+            assertNotNull(response);
+
+        }
+
+
+    }
+
+    @Test
+    void deveDesPromoverPessoaPorId() {
+        when(pessoaRepositorie.getReferenceById(any())).thenReturn(pessoa1);
+        when(pessoaRepositorie.save(any())).thenReturn(pessoa1);
+        Pessoa response = pessoaService.desPromover(1);
+        assertNotNull(response);
     }
 
     private void montarCenarioDeTeste() {
