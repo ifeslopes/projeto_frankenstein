@@ -34,7 +34,7 @@ public class PessoaService {
     }
 
     public Page<Pessoa> listaTodos() {
-        Pageable pageable = PageRequest.of(1, 1, Sort.by("nome"));
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("nome"));
         return pessoaRepositorie.findAll(pageable);
     }
 

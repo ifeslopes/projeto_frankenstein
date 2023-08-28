@@ -6,6 +6,8 @@ import com.home.crudPessoa.entities.Pessoa;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 @Component
 @AllArgsConstructor
 
@@ -19,7 +21,9 @@ public class PessoaMapper {
                .senha(resquestDTO.getSenha())
                .telefone(resquestDTO.getTelefone())
                .numeroDocumneto(resquestDTO.getNumeroDocumneto())
+               .perfils(Set.of(1))
                .build();
+
     }
 
 
