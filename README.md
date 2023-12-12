@@ -20,6 +20,7 @@ O objetivo principal deste projeto é proporcionar uma oportunidade de praticar 
 8. Implementação do Spring Security com JWT (JSON Web Tokens) para garantir a segurança da aplicação.
 9. Realização de testes integrados para verificar a interação correta entre os componentes da aplicação.
 10. Execução de testes unitários para assegurar o funcionamento correto de cada unidade de código.
+11.  Implementação docker kubernetes, usando minikube para teste local.
 
 ## Estado do projeto
 
@@ -39,8 +40,15 @@ src
 │   │       └── home
 │   │           └── crudPessoa
 │   │               ├── CrudPessoaApplication.java
+│   │               ├── CrudPessoaApplicationTesteLog.java
 │   │               ├── config
+│   │               │   ├── BasicConfiguration.java
+│   │               │   ├── ExceptionMessageBundleConfig.java
+│   │               │   ├── KeycloakConfig.java
+│   │               │   ├── KeycloakLogoutHandler.java
+│   │               │   ├── MethodSecurityConfig.java
 │   │               │   ├── SecurityConfig.java
+│   │               │   ├── SecurityConfingKeycloack.java
 │   │               │   └── TestConfig.java
 │   │               ├── controller
 │   │               │   ├── PessoaController.java
@@ -80,12 +88,22 @@ src
 │       ├── application-dev.properties
 │       ├── application-test.properties
 │       ├── application.properties
+│       ├── application.yml
+│       ├── application.yml:Zone.Identifier
+│       ├── k8s
+│       │   ├── deployment.yml
+│       │   ├── deployment1.yml
+│       │   ├── postgres-configmap.yml
+│       │   ├── postgres-credentials.yml
+│       │   ├── postgres-deployment.yaml
+│       │   ├── postgres-deployment12.yml
+│       │   ├── service.yml
+│       │   └── spring-app-deployment.yaml
 │       ├── static
 │       └── templates
 └── test
     └── java
         ├── com
-        │   ├── example
         │   └── home
         │       └── crudPessoa
         │           ├── CrudPessoaApplicationTests.java
@@ -102,5 +120,4 @@ src
         │               └── TestPessoaRepository.java
         └── resources
             └── application-testInte.properties
-
 ```
