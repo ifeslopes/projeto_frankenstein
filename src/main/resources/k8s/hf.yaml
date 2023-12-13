@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-spring-boot-app
+spec:
+  containers:
+    - name: my-spring-boot-app
+      image: my-spring-boot-app:latest
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 8080
+  restartPolicy: Never
